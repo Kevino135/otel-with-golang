@@ -93,8 +93,8 @@ func main() {
 	router := mux.NewRouter()
 	router.Use(otelmux.Middleware(serviceName))
 	router.HandleFunc("/hello", hello)
+	router.HandleFunc("/hai", hai)
 	http.ListenAndServe(":8888", router)
-
 }
 
 func hello(writer http.ResponseWriter, request *http.Request) {
@@ -107,6 +107,30 @@ func hello(writer http.ResponseWriter, request *http.Request) {
 
 	// Create a custom span
 	_, mySpan := tracer.Start(ctx, "mySpan")
+	if response.isValid() {
+		log.Print("The response is valid")
+	}
+	mySpan.End()
+
+	// Update the metric
+	numberOfExecutions.Add(ctx, 1,
+		[]attribute.KeyValue{
+			attribute.String(
+				numberOfExecName,
+				numberOfExecDesc)}...)
+
+}
+
+func hai(writer http.ResponseWriter, request *http.Request) {
+
+	ctx := request.Context()
+
+	ctx, buildResp := tracer.Start(ctx, "buildHai")
+	response := buildResponse(writer)
+	buildResp.End()
+
+	// Create a custom span
+	_, mySpan := tracer.Start(ctx, "myHai")
 	if response.isValid() {
 		log.Print("The response is valid")
 	}
