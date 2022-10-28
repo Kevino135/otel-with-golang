@@ -7,4 +7,3 @@ run-with-collector.yaml
 run-without-collector.yaml
 run-locally.sh
 fleet-server
-environment

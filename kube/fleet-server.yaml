@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fleet-server
+  labels:
+    app: fleet-server
+spec:
+  selector:
+    matchLabels:
+      app: fleet-server
+  template:
+    metadata:
+      labels:
+        app: fleet-server
+    spec:
+      containers:
+      - name: fleet-server
+        image: crispymoon123/otel-fleet-server:0.0.1
+        ports:
+        - containerPort: 8200
+        - containerPort: 8220
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleet-server
+spec:
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 8200
+    targetPort: 8200
+    name: http
+  - protocol: TCP
+    port: 8220
+    targetPort: 8220
+    name: http2
+  selector:
+    app: fleet-server
