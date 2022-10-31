@@ -16,7 +16,7 @@ spec:
       serviceAccountName: fleet-server
       containers:
       - name: fleet-server
-        image: crispymoon123/otel-fleet-server:0.0.1
+        image: crispymoon123/otel-fleet-server:0.0.2
         ports:
         - containerPort: 8200
         - containerPort: 8220
