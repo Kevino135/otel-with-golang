@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: elasticsearch
-        image: crispymoon123/otel-elastic-search:0.0.1
+        image: crispymoon123/otel-elastic-search:0.0.3
         ports:
         - containerPort: 9200
 ---

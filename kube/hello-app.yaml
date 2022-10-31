@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: hello-app
-        image: crispymoon123/otel-hello-app:0.0.1
+        image: crispymoon123/otel-hello-app:0.0.3
         ports:
         - containerPort: 8888
 ---

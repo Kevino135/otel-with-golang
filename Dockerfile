@@ -9,4 +9,6 @@ RUN go build -o hello-app
 
 ENV EXPORTER_ENDPOINT=fleet-server:8200
 
+EXPOSE 8888
+
 ENTRYPOINT [ "/usr/src/app/hello-app" ]
