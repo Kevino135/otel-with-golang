@@ -6,4 +6,7 @@ COPY main.go .
 RUN go mod tidy
 
 RUN go build -o hello-app
+
+ENV EXPORTER_ENDPOINT=fleet-server:8200
+
 ENTRYPOINT [ "/usr/src/app/hello-app" ]
